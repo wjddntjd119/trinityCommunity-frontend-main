@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const AlarmsPage = () => {
+  const [isWriting, setIsWriting] = useState(false);
+  const [newText, setNewText] = useState("");
+  const [posts, setPosts] = useState([]);
+  const [selectedPost, setSelectedPost] = useState(null);
 
-  
   const getRandomDate = () => {
     const startDate = new Date("2023-05-01").getTime();
     const endDate = new Date("2023-06-15").getTime();
@@ -14,54 +17,61 @@ const AlarmsPage = () => {
     return `${year}-${month}-${day}`;
   };
 
+  const handleWriting = () => {
+    setIsWriting(true);
+  };
+
+  const handleComplete = () => {
+    if (newText.trim() !== "") {
+      const newPost = {
+        text: newText,
+        date: getRandomDate(),
+      };
+      setPosts([...posts, newPost]);
+      setNewText("");
+      setIsWriting(false);
+    }
+  };
+
+  const handleItemClick = (index) => {
+    setSelectedPost(posts[index]);
+  };
 
   return (
     <div>
       <h1>알람 확인 페이지</h1>
       <div className="alarmPage">
+        <button onClick={handleWriting}>글 작성하기</button>
+        {isWriting ? (
+          <div className="writing-form">
+            <textarea
+              value={newText}
+              onChange={(e) => setNewText(e.target.value)}
+              placeholder="글을 작성하세요..."
+            />
+            <button onClick={handleComplete}>완료</button>
+          </div>
+        ) : null}
         <div className="form-list">
-          <div className="form-item">
-            <div className="form-number">1</div>
-            <h2 className="form-input">안녕하세요 6월 15일 저희 집에...</h2>
-            <div className="form-date">{getRandomDate()}</div>
-          </div>
-          <div className="form-item">
-            <div className="form-number">2</div>
-            <h2 className="form-input">금일 알려드립니다. 근처에 상가...</h2>
-            <div className="form-date">{getRandomDate()}</div>
-          </div>
-          <div className="form-item">
-            <div className="form-number">3</div>
-            <h2 className="form-input">7월 14일에 이사가 예정되어있습...</h2>
-            <div className="form-date">{getRandomDate()}</div>
-          </div>
-          <div className="form-item">
-            <div className="form-number">4</div>
-            <h2 className="form-input">7월 1일, 서버 임시점검이 예정...</h2>
-            <div className="form-date">{getRandomDate()}</div>
-          </div>
-          <div className="form-item">
-            <div className="form-number">5</div>
-            <h2 className="form-input">8월 초반에 OO건설의 공사가 진...</h2>
-            <div className="form-date">{getRandomDate()}</div>
-          </div>
-          <div className="form-item">
-            <div className="form-number">6</div>
-            <h2 className="form-input">안녕하십니까. 7월 20일에 이사를...</h2>
-            <div className="form-date">{getRandomDate()}</div>
-          </div>
-          <div className="form-item">
-            <div className="form-number">7</div>
-            <h2 className="form-input">6월 1일, 서버 임시점검이 예정...</h2>
-            <div className="form-date">{getRandomDate()}</div>
-          </div>
-          <div className="form-item">
-            <div className="form-number">8</div>
-            <h2 className="form-input">안녕하세요. 6월 17일부로 이사를...</h2>
-            <div className="form-date">{getRandomDate()}</div>
-
-          </div>
+          {posts.map((post, index) => (
+            <div
+              className="form-item"
+              key={index}
+              onClick={() => handleItemClick(index)}
+            >
+              <div className="form-number">{index + 1}</div>
+              <h2 className="form-input">{post.text}</h2>
+              <div className="form-date">{post.date}</div>
+            </div>
+          ))}
         </div>
+        {selectedPost && (
+          <div className="selected-post">
+            <h2>선택한 글 내용</h2>
+            <p>{selectedPost.text}</p>
+            <p>작성일: {selectedPost.date}</p>
+          </div>
+        )}
       </div>
     </div>
   );
