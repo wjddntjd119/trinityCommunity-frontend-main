@@ -1,0 +1,673 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Header */
+.header {
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #F0F0F0;
+}
+
+.header .topBar {
+  display: flex;
+  align-items: center;
+  font-family: 'NanumSquare Neo';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px; 
+  padding-right: 20px;
+}
+
+.header .topBar p {
+  margin: 0 10px;
+}
+
+.header .loginControl,
+.header .customerCenter {
+  cursor: pointer;
+}
+
+.header .customerCenter:hover,
+.header .loginControl:hover {
+  text-decoration: underline;
+}
+
+.header .customerCenter:active,
+.header .loginControl:active {
+  color: gray;
+}
+
+/*munu(메뉴)*/
+.menu{
+  height: 130px;
+  border-top: solid 1px rgb(189, 189, 189);
+  border-bottom: solid 1px rgb(189, 189, 189);
+  display: flex;
+  justify-content: space-between;
+  font-family: 'NanumSquare Neo';
+  font-style: normal;
+  font-weight: 700;
+}
+
+.login {
+  display: flex;
+  flex-direction: column; /* Add this to align child elements vertically */
+  align-items: center; /* Center vertically */
+  justify-content: space-between; /* Center horizontally */
+  margin: 10px 0px;
+  padding-right: 30px;
+  border-right: solid 1px #9e9e9e;
+}
+
+.name-rectangle,
+.date-rectangle,
+.notice-rectangle,
+.uralarms,
+.notice-rectangle2,
+.urreport {
+  display: inline-flex; /* Display child elements horizontally */
+  align-items: center; /* Center vertically */
+}
+.sysUser{
+  margin: 0px 0px  10px 20px;
+}
+
+.name-rectangle{
+  color: white;
+  border-radius: 15px 0px 0px 15px;
+  background-color: #0090FF;
+  padding: 5px 10px;
+}
+.date-rectangle{
+  border-radius: 0px 15px 15px 0px;
+  background-color: #C1DBEF;
+  padding: 5px 10px;
+}
+.sysAlarm1{
+  margin: 0px 0px  10px 0px;
+}
+.numscolor{
+  color:red;
+  margin: 0px 5px;
+}
+
+.notice-rectangle{
+  color: white;
+  border-radius: 5px;
+  background-color: #0090FF;
+  padding: 2px 5px;
+  margin-right: 10px;
+}
+.notice-rectangle2{
+  color: white;
+  border-radius: 5px;
+  background-color: #FF6666;
+  padding: 2px 5px;
+  margin-right: 10px;
+}
+
+.suList {
+  width: 78%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.category-top,
+.category-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.category-top{
+  border-bottom: solid 1px #bbbbbb;
+}
+
+.category-top > * {
+  width: 36%;
+  height: 30px;
+  font-size: large;
+  padding: 10px 0px;
+  border-right: solid 1px #bbbbbb;
+}
+
+.category-bottom > * {
+  width: 36%;
+  height: 30px;
+  font-size: large;
+  padding: 10px 0px;
+  border-right: solid 1px #bbbbbb;
+}
+
+.menu .category-bottom > *,
+.menu .category-top > * {
+  cursor: pointer;
+}
+
+.menu .category-bottom > *:hover,
+.menu .category-top > *:hover {
+  color: #0090FF
+}
+
+.menu .suList .active {
+  color: rgb(1, 41, 172);
+}
+
+
+
+@media(min-width: 1400px){
+  .menu{
+    width:100%;
+  }
+}
+
+@media(max-width: 1400px){
+  .menu{
+    width:1400px;
+  }
+}
+
+
+/*loginpage(로그인페이지)*/
+/*registerpage(회원가입페이지)*/
+.loginBox,
+.RegisterBox {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+}
+
+.loginBox> .title,
+.RegisterBox .title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.loginBox> .sign_Content,
+.RegisterBox .sign_Content {
+  margin-bottom: 20px;
+}
+
+.loginBox> .sign_Content> .form-Row,
+.RegisterBox .sign_Content .form-Row {
+  margin-bottom: 15px;
+}
+
+.loginBox> .sign_Content> .form-Row> .form-Item,
+.RegisterBox .sign_Content .form-Row .form-Item {
+  display: flex;
+  align-items: center;
+}
+
+.loginBox> .sign_Content> .form-Row> .form-Item> .form-Input{
+  flex-grow: 1;
+}
+.RegisterBox .sign_Content .form-Item .form-Input .idInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.RegisterBox .sign_Content .form-Item .form-Input {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.loginBox> .sign_Content> .form-Row> .form-Item> .form-Input> .inputId,
+.RegisterBox .sign_Content .form-Item .form-Input .idInput,
+.RegisterBox .sign_Content .form-Item .form-Input input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+
+.loginBox .sign_Content .form-Item .form-Input .error,
+.RegisterBox .sign_Content .form-Item .form-Input .error {
+  color: #ff5f5f;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 8px;
+  padding: 5px;
+}
+.RegisterBox .sign_Content .form-Item .form-Input .buttonId {
+  margin-left: 8px;
+  padding: 8px 0px;
+  background-color: #5fdaff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+.RegisterBox .sign_Content .form-Item .form-Input .buttonId:hover {
+  background-color: #0090FF;
+}
+
+.btn_Login,
+.btn_Register {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  background-color: #5fdaff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn_Login,
+.reportNoise .btn-container .btn_Back {
+  background-color: #5fdaff;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+.btn_Register,
+.reportNoise .btn-container .btn_Report
+ {
+  background-color: #ff5f5f;
+  margin-bottom: 10px;
+}
+
+.btn_Login:hover,
+.reportNoise .btn-container .btn_Back:hover
+{
+  background-color: #4bbbea;
+}
+.btn_Register:hover,
+.reportNoise .btn-container .btn_Report:hover {
+  background-color: #ff4f4f;
+}
+
+/* AlarmPage(알람페이지)*/
+
+.alarmPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alarmPage> .form-list {
+  width: 70%;
+  list-style: none;
+  padding: 0;
+}
+
+.alarmPage> .form-list> .form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: solid 1px black;
+}
+
+.alarmPage>.form-list> .form-item> .form-number {
+  width: 2rem;
+  height: 2rem;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.alarmPage>.form-list> .form-item> .form-input {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  text-align: left;
+  color: black;
+  text-decoration: none;
+}
+
+.alarmPage>.form-list> .form-item> .form-input:hover {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+
+.alarmPage>.form-list> .form-item>.form-date {
+  margin-left: auto;
+  margin-right: 20px;
+  color: #5d5d5d;
+}
+
+
+
+/* Management Item(아이템) */
+
+.Management_Item{
+  width: 430px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border: solid 2px #bbbbbb;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.Management_Item> .room_number{
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.Management_Item> .right{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.Management_Item> .right> .top{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.Management_Item> .right> .bottom{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Management_Item> .right> .top> .schedule {
+  font-size: 18px;
+  margin-right: 16px;
+}
+
+.Management_Item> .right> .top> .schedule_status {
+  color: whitesmoke;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: gray;
+  border-radius: 10%;
+  padding: 0 5px;
+}
+.Management_Item> .right> .bottom> .situation {
+  font-size: 18px;
+  margin-right: 16px;
+}
+.Management_Item> .right> .bottom> .situation_status {
+  color: whitesmoke;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(221, 210, 58);
+  border-radius: 10%;
+  padding: 0 5px;
+}
+
+/*ManagementList(리스트)*/
+.managementList {
+  display: flex;
+  flex-wrap: wrap;
+}
+.dongSelect{
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  color: #333;
+  width: 200px;
+  margin-left: 10%;
+  margin-bottom: 5px;
+  
+}
+
+.managementList_Item {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10%;
+}
+
+.managementList_Item > * {
+  flex-basis: 45%;
+  box-sizing: border-box;
+}
+
+/* model's */
+/*모달 영역(모달박스+회색영역)*/
+.modelbox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+/*모달박스*/
+.modelbox > .modelContent {
+  width: 600px;
+  height: 450px;
+  border-radius: 15px;
+  background-color: whitesmoke;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modelbox > .modelContent > .closeModel {
+  float: right;
+  width: 40px;
+  height: 40px;
+  margin: 20px;
+  cursor: pointer;
+  color: #5d5d5d;
+  font-size: 30px;
+  border: 0;
+  background-color: transparent;
+}
+
+.modelbox > .modelContent > .postContents> .title {
+  margin: 50px 0px 0px 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+.modelbox > .modelContent > .postContents> .views {
+  margin: 10px 0px 0px 30px;
+  font-size: 15px;
+}
+
+.modelbox > .modelContent > .postContents> .user_content {
+  margin: 50px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 60px;
+}
+.modelbox > .modelContent > .postContents> .users_total {
+  border-top: solid 1px #BAB6B6;
+  margin: 0px 30px;
+  padding-top: 10px;
+  font-size: 15px;
+  font-weight: 600;
+
+}
+
+/*모달박스 태그 스타일*/
+.modelbox > .modelContent > .postContents> .tags {
+  margin: 10px 30px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.modelbox > .modelContent > .postContents> .tags> .tag {
+  background-color: #FFCC00;
+  margin: 0px 10px
+}
+.modelbox > .modelContent > .btn_{
+  margin-left: 80%;
+  margin-top: 50px;
+}
+
+/*소음신고내역 rhnoise*/
+.no-report-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.no-report-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.no-report-section p {
+  font-size: 1.2rem;
+}
+
+/*ReportNoise 소음신고*/
+.reportNoise {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 20px;
+  
+}
+.reportNoise h1,
+.reportNoise label,
+.reportNoise textarea,
+.reportNoise .btn-container .btn_Report,
+.reportNoise .btn-container .btn_Back{
+  font-family: 'NanumSquare Neo';
+  font-style: normal;
+  font-weight: 700;
+}
+.reportNoise h1 {
+  text-align: center;
+}
+
+.reportNoise label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.datepicker-container {
+  text-align: left;
+}
+
+
+.reportNoise select,
+.reportNoise textarea {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.radio-group{
+  margin-top: 10px;
+}
+
+.reportNoise .horizontal-labels {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.reportNoise .hour-label,
+.reportNoise .minute-label {
+  width: 100%;
+  flex-basis: 50px;
+}
+.reportNoise .minute-label {
+  margin-left: 10px;
+}
+
+.reportNoise textarea {
+  height: 100px;
+  resize: none;
+}
+
+.reportNoise .placeholder-text {
+  color: gray;
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.reportNoise .input-box {
+  position: relative;
+}
+
+.reportNoise .input-box textarea:focus + .placeholder-text {
+  transform: translate(-10px, -25px) scale(0.8);
+}
+
+.reportNoise .precautions {
+  margin-top: 20px;
+}
+
+.reportNoise .btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.reportNoise .btn-container button {
+  margin-left: 10px;
+}
+
+.reportNoise .btn-container .btn_Report,
+.reportNoise .btn-container .btn_Back{
+  padding: 5px;
+}

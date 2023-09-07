@@ -1,0 +1,66 @@
+import React, { useState, useEffect } from "react";
+import axios from "../../AxiosController";
+import Management_Item from "./Management_Item";
+
+const Management_List = () => {
+  const [dongList, setDongList] = useState([]);
+  const [selectedDong, setSelectedDong] = useState("");
+  const [hoList, setHoList] = useState([]);
+
+  useEffect(() => {
+    //해당 아파트에 있는 동들을 가져옴
+    axios
+      .get("/api/apart/dong/1")
+      .then((res) => {
+        console.log(res.data.data);
+        setDongList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    //그 동에 있는 호들을 가져옴
+    if (selectedDong !== "") {
+      axios
+        .get(`/api/apart/ho/1/${selectedDong}`)
+        .then((res) => {
+          console.log(res.data.data);
+          setHoList(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedDong]);
+
+  const handleDongChange = (event) => {
+    setSelectedDong(event.target.value);
+  };
+
+  return (
+    <div className="managementList">
+      <select className="dongSelect" value={selectedDong} onChange={handleDongChange}>
+        <option value="">동을 선택해주세요</option>
+        {dongList.map((dong) => (
+          <option key={dong} value={dong}>
+            {dong}동
+          </option>
+        ))}
+      </select>
+      {hoList === null ?
+        <div>
+          로딩 중...
+        </div> :
+        <div className="managementList_Item">
+          {hoList.map((item, index) => (
+            <Management_Item key={index} data={item} />
+          ))}
+        </div>
+      }
+    </div>
+  );
+};
+
+export default Management_List;
