@@ -41,7 +41,7 @@ export default function Login () {
     }
 
     if(isValid) {
-      axios.post("/api/users/login", { userId, password })
+      axios.post("/api/user/login", { userId, password })
       .then((res) => {
         if (res && res.data) {
           if (res.data.error === null || res.data.data !== null) {

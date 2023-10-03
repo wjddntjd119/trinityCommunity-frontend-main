@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const checkSession = () => {
-    axios.get("/api/users/isLogin")
+    axios.get("/api/user/isLogin")
       .then(res => {
         setResdata(res.data.data);
         console.log(res.data.error + "에러 부분")
