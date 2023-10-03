@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 const EditPost = ({ isEdit }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    
+  })
 
   // 신규 작성인지 수정인지 확인하는 if문
   if(!isEdit) {

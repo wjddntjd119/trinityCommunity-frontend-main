@@ -8,7 +8,7 @@ const AlarmsPage = () => {
     <div>
       <h1>알람 확인 페이지</h1>
       <div className="alarmPage">
-        <button onClick={() => navigate('/newPost')}>글 작성하기</button>
+        <button className="custom-btn bw-btn" onClick={() => navigate('/newPost')}><span>글 작성하기</span></button>
       </div>
     </div>
   );
