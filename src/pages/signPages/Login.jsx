@@ -46,12 +46,12 @@ export default function Login () {
         if (res && res.data) {
           if (res.data.error === null || res.data.data !== null) {
             // 서버에서 가져온 토큰을 저장
+            console.log(res.data);
             const tokenFromBackend = res.data.data;
 
-            localStorage.setItem('dorandoran-token', tokenFromBackend);
+            localStorage.setItem('daelim-token', tokenFromBackend);
 
             login();
-            window.location.reload();
             alert("로그인 되었습니다.");
           } else {
             console.log(res.data.error.errorId);

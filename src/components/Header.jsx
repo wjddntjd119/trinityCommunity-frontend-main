@@ -9,14 +9,14 @@ const Header = (props) => {
   //const { isResdata } = useContext(AuthContext);
   const navigate = useNavigate();
   const [userName, setUserName] = useState(null);
-  const token = localStorage.getItem('dorandoran-token')
+  const token = localStorage.getItem('daelim-token')
 
   useEffect(() => {
     if (token !== null) {
       axios
-        .get(`/api/users/info`,{
+        .get(`/api/user/info`,{
           headers: {
-            'dorandoran-token': `${token}`,
+            'daelim-token': `${token}`,
           },
         })
         .then((res) => {
@@ -38,7 +38,7 @@ const Header = (props) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('dorandoran-token');
+    localStorage.removeItem('daelim-token');
     alert("로그아웃했습니다.");
     window.location.reload();
   };
