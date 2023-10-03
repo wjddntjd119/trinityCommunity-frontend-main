@@ -27,22 +27,22 @@ function Management_Item_Private (props){
 
   return (
     <div className="Management_Private">
-    <div className="rounded-rectangle">
-      <div className="centered-text">
-        <strong>Building 101, Room 101</strong>
+      <div className="rounded-rectangle">
+        <div className="dong_ho">
+          <strong className="larger-text">Building 101, Room 101</strong>
+        </div>
+        <div className="centered-text_schedule">
+          Noise Schedule: <span className="bold-text">None</span>
+        </div>
+        <div className="centered-text_noise">
+          Noise and Vibration Situation: <span className="bold-text">None</span>
+        </div>
       </div>
-      <div className="centered-text">
-        Noise Schedule: <span className="bold-text">None</span>
-      </div>
-      <div className="centered-text">
-        Noise and Vibration Situation: <span className="bold-text">None</span>
+      <div className="example-picture">
+        그림 공간입니다
       </div>
     </div>
-    <div className="example-picture">
-      그림 공간입니다
-    </div>
-  </div>
-);
+  );
     
 };
 
