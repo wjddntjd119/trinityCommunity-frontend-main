@@ -9,7 +9,7 @@ const Header = (props) => {
   //const { isResdata } = useContext(AuthContext);
   const navigate = useNavigate();
   const [userName, setUserName] = useState(null);
-  const token = localStorage.getItem('daelim-token')
+  const token = localStorage.getItem('daelim-token');
 
   useEffect(() => {
     if (token !== null) {
