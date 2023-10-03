@@ -12,11 +12,10 @@ export default function Login () {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(isResdata !== null){
+    if(isResdata !== undefined && null && ''){
       navigate('/');
     }
   },[isResdata, navigate])
-  
 
   function handleUserIdChange(e) {
     setUserId(e.target.value);
