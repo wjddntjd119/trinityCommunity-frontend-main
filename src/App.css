@@ -808,3 +808,98 @@ button {
 .bw-btn span:hover:after {
   width: 100%;
 }
+
+/*post 글 작성하기 css*/
+/* Editor 컨테이너 */
+.Editor {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* TopText */
+.Editor> .TopText {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* EditSpace */
+.Editor> .EditSpace {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* EditName */
+.Editor> .EditSpace> section> .EditName {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* EditBox */
+.Editor> .EditSpace> section> .EditBox {
+  margin-bottom: 20px;
+}
+
+/* Title_input */
+.Editor> .EditSpace> section> .EditBox> .Title_input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* ContentSpace */
+.Editor> .EditSpace> section> .EditBox> .ContentSpace {
+  width: 90%;
+  height: 150px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+}
+
+/* EditBtnSpace */
+.Editor> .EditSpace> section> .EditBtnSpace {
+  margin-top: 20px;
+}
+
+/* Buttons */
+.Editor> .EditSpace> section> .EditBtnSpace> button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.Editor> .EditSpace> section> .EditBtnSpace> button:hover{
+  background-color: #004ea1;
+}
+
+.Editor> .EditSpace> section> .EditBtnSpace> button:last-child {
+  margin-right: 0;
+  background-color: #dc3545;
+}
+.Editor> .EditSpace> section> .EditBtnSpace> button:last-child:hover{
+  background-color: #9c2430;
+}
+
+/* Optional: Delete button style */
+.Editor> .EditSpace> section> .EditBtnSpace> button.delete {
+  background-color: #dc3545;
+}
+.Editor> .EditSpace> section> .EditBtnSpace> button.delete:hover{
+  background-color: #9c2430;
+}
