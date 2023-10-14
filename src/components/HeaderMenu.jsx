@@ -123,7 +123,7 @@ const HeaderMenu = () => {
           <div className={`rh ${activeMenu === 'rhNoise' ? 'active' : ''}`} onClick={rhNoise}>소음 신고 내역</div>
         </div>
         <div className="category-bottom">
-          <div className={`sgh ${activeMenu === 'sgNoise' ? 'active' : ''}`} onClick={sghNoise}>소음 발생 예정 내역</div>
+          <div className={`sgh ${activeMenu === 'sgNoise' ? 'active' : ''}`} onClick={sghNoise}>아파트 게시물</div>
           <div className={`manages ${activeMenu === 'manages' ? 'active' : ''}`} onClick={manages}>입주민 관리</div>
           <div className={`oa ${activeMenu === 'oamenu' ? 'active' : ''}`} onClick={oaMenu}>기타 추가 메뉴</div>
         </div>

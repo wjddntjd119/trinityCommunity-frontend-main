@@ -1,16 +1,37 @@
-import axios from "../AxiosController";
+import axios from "../../AxiosController";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const EditPost = ({ isEdit }) => {
   const navigate = useNavigate();
-
+  const userId = useParams().id;
   const token = localStorage.getItem('daelim-token');
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [apartId, setApartId] = useState("");
   const titleRef = useRef();
   const contentRef = useRef();
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+  
+    if (userId !== undefined) {
+      axios.get(`/api/post/${userId}`, config)
+        .then((res) => {
+          console.log(res.data.data.title);
+          setTitle(res.data.data.title);
+          setContent(res.data.data.content);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [userId]);
+  
 
   useEffect(() => {
     if (token !== null) {
@@ -21,8 +42,6 @@ const EditPost = ({ isEdit }) => {
           },
         })
         .then((res) => {
-          console.log(res.data);
-          console.log(res.data.data.isAdmin);
           setApartId(res.data.data.isAdmin);
         })
     }
@@ -92,46 +111,44 @@ const EditPost = ({ isEdit }) => {
   }
 
   // 신규 작성인지 수정인지 확인하는 if문
-  if(!isEdit) {
-    return(
-      <div className="Editor">
-        <div className="TopText">
-          {isEdit ? "게시물 수정" : "새 게시물 작성"}
-        </div>
-        <div className="EditSpace">
-          <section>
-            <div className="EditName">게시글 작성</div>
-            <div className="EditBox">
-              <input 
-                type="text"
-                className="Title_input"
-                placeholder="글의 제목을 작성해주세요" 
-                ref={titleRef}
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-            <div className="EditBox">
-              <textarea
-                className="ContentSpace"
-                placeholder="내용을 작성해 주세요"
-                ref={contentRef}
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-              />
-            </div>
-          </section>
-          <section>
-            <div className="EditBtnSpace">
-              <button onClick={() => navigate(-1)}>취소하기</button>
-              <button onClick={handleSubmit}>작성완료</button>
-            </div>
-            {isEdit ? <button>삭제하기</button> : ''}
-          </section>
-        </div>
+  return(
+    <div className="Editor">
+      <div className="TopText">
+        {isEdit ? "게시물 수정" : "새 게시물 작성"}
       </div>
-    )
-  }
+      <div className="EditSpace">
+        <section>
+          <div className="EditName">게시글 작성</div>
+          <div className="EditBox">
+            <input 
+              type="text"
+              className="Title_input"
+              placeholder="글의 제목을 작성해주세요" 
+              ref={titleRef}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div className="EditBox">
+            <textarea
+              className="ContentSpace"
+              placeholder="내용을 작성해 주세요"
+              ref={contentRef}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
+        </section>
+        <section>
+          <div className="EditBtnSpace">
+            <button onClick={() => navigate(-1)}>취소하기</button>
+            {isEdit ? <button className="delete">삭제하기</button> : ''}
+            {isEdit ? <button onClick={handleSubmit}>수정완료</button> : <button onClick={handleSubmit}>작성완료</button>}
+          </div>
+        </section>
+      </div>
+    </div>
+  )
 }
 
 export default EditPost;

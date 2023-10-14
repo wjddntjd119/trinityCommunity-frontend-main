@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from '../../AxiosController';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -11,10 +11,11 @@ export default function Register () {
   const rePasswordFormRef = useRef(null);
   const telNumFormRef = useRef(null);
   const apartIdxFormRef = useRef(null);
+  const token = localStorage.getItem('daelim-token');
 
-  const { isResdata } = useContext(AuthContext);
   const navigate = useNavigate();
   const [ isUserId, setUserId ] = useState("");
+  const [userIdTk, setUserIdTk] = useState(null);
   const [userIdError, setUserIdError] = useState("");
   const [userNameError, setUserNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -26,10 +27,25 @@ export default function Register () {
   const [selectedApartment, setSelectedApartment] = useState(null); // 선택한 아파트 정보 상태 추가
 
   useEffect(() => {
-    if (isResdata !== null) {
+    if (token !== null) {
+      axios
+        .get(`/api/user/info`,{
+          headers: {
+            'daelim-token': `${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data.data.userId)
+          setUserIdTk(res.data.data.userId);
+        })
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (userIdTk !== null) {
       navigate('/');
     }
-  }, [isResdata, navigate])
+  }, [userIdTk, navigate])
 
   const [inputs, setInputs] = useState({
     userId: '',

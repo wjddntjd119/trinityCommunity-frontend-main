@@ -325,28 +325,29 @@
   background-color: #ff4f4f;
 }
 
-/* AlarmPage(알람페이지)*/
+/* postItem(게시글 리스트)*/
 
-.alarmPage {
+.postItem {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.alarmPage> .form-list {
-  width: 70%;
+.postItem > .postItem_box {
+  min-width: 400px;
+  width: 50%;
   list-style: none;
   padding: 0;
 }
 
-.alarmPage> .form-list> .form-item {
+.postItem > .postItem_box > .postItem_List {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
   border: solid 1px black;
 }
 
-.alarmPage>.form-list> .form-item> .form-number {
+.postItem > .postItem_box > .postItem_List > .postNum {
   width: 2rem;
   height: 2rem;
   background-color: lightgray;
@@ -356,9 +357,10 @@
   font-size: 19px;
   font-weight: bold;
   margin-left: 10px;
+  border-radius: 15px;
 }
 
-.alarmPage>.form-list> .form-item> .form-input {
+.postItem > .postItem_box > .postItem_List > .postTitles {
   margin-left: 0.5rem;
   padding: 0.5rem;
   border: none;
@@ -371,20 +373,70 @@
   text-decoration: none;
 }
 
-.alarmPage>.form-list> .form-item> .form-input:hover {
+.postItem > .postItem_box > .postItem_List > .postTitles:hover {
   text-decoration: underline;
   color: blue;
   cursor: pointer;
 }
 
 
-.alarmPage>.form-list> .form-item>.form-date {
+.postItem > .postItem_box > .postItem_List > .postDate {
   margin-left: auto;
   margin-right: 20px;
   color: #5d5d5d;
 }
 
+/* postList(게시글 리스트)*/
 
+.postList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postList > .postList_box {
+  min-width: 400px;
+  width: 50%;
+  list-style: none;
+  padding: 0;
+}
+
+.postList > .postList_box > .postLt_List {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-top: 2px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.postList > .postList_box > .postLt_List > .postLtNum {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.postList > .postList_box > .postLt_List > .postLTitles {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  text-align: left;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.postList > .postList_box > .postLt_List > .postLtDate {
+  margin-left: auto;
+  margin-right: 20px;
+  font-weight: bold;
+}
 
 /* Management Item(아이템) */
 
@@ -720,10 +772,16 @@
   margin: 40px auto;
   text-align: center;
 }
+
 button {
   margin: 20px;
   outline: none;
 }
+
+.btn_box {
+  text-align: right;
+}
+
 .custom-btn {
   width: 130px;
   height: 40px;
@@ -736,11 +794,11 @@ button {
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
+  margin-right: 25%;
 }
 
-/* 6 */
 .bw-btn {
-   background: #000;
+  background: #000;
   color: #fff;
   line-height: 42px;
   padding: 0;
@@ -890,10 +948,10 @@ button {
 
 .Editor> .EditSpace> section> .EditBtnSpace> button:last-child {
   margin-right: 0;
-  background-color: #dc3545;
+  background-color: #43dc35;
 }
 .Editor> .EditSpace> section> .EditBtnSpace> button:last-child:hover{
-  background-color: #9c2430;
+  background-color: #289c24;
 }
 
 /* Optional: Delete button style */
@@ -902,4 +960,63 @@ button {
 }
 .Editor> .EditSpace> section> .EditBtnSpace> button.delete:hover{
   background-color: #9c2430;
+}
+
+/* post */
+
+.post_Box {
+  display: flex;
+  flex-direction: column; /* 요소들을 위아래로 나열 */
+  align-items: center; /* 요소를 수직 방향으로 가운데 정렬 */
+  justify-content: flex-start; /* 요소를 수평 방향으로 상단으로 정렬 */
+}
+
+.postPage {
+  width: 50%;
+  max-width: 960px;
+  min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Title, UserName, ViewCount 영역 스타일 */
+.titleSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.postL {
+  flex: 1;
+}
+
+.postTitle {
+  font-size: 24px; /* 원하는 크기로 조정하세요 */
+  text-align: left;
+}
+
+.postR {
+  display: flex;
+  flex-direction: column;
+  text-align: right; /* 가운데 정렬 */
+}
+
+.postUser, .postViewCount {
+  margin: -15px 0; /* userName과 viewCount 간의 간격을 조정 */
+}
+
+/* Content 영역 스타일 */
+.contentSection {
+  margin-top: 10px;
+  min-height: 600px;
+  border-bottom: 1px solid #ccc;
+}
+
+.postContent {
+  font-size: 20px; /* 원하는 크기로 조정하세요 */
+  text-align: justify;
 }

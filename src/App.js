@@ -17,8 +17,11 @@ import Register from './pages/signPages/Register';
 import { AuthProvider } from './context/AuthContext';
 import AlarmsPage from './pages/AlarmsPage';
 import ReportNoise from './components/report/ReportNoise';
-import EditPost from './pages/EditPost';
-import NewPost from './pages/NewPost';
+import EditPost from './components/posts/EditPost';
+import NewPost from './components/posts/NewPost';
+import PostItem from './components/posts/PostItem';
+import Post from './components/posts/Post';
+import Edit from './components/posts/Edit';
 
 function App() {
   return (
@@ -39,8 +42,11 @@ function App() {
             <Route path='/manages' element={<ReportNoise />} />
             <Route path='/oamenu' element={<OAMenuPage />} />
             <Route path='/alarms' element={<AlarmsPage />} />
+            <Route path='/post/:id' element={<Post />} />
+            <Route path='/edit/:id' element={<Edit />} />
             <Route path='/newPost' element={<NewPost />} />
             <Route path='/editPost' element={<EditPost/>} />
+            <Route path='/postItem' element={<PostItem />} />
             <Route path='/*' element={<NotFound />} />
           </Routes>
         </AuthProvider>
