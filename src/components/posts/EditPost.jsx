@@ -87,12 +87,12 @@ const EditPost = ({ isEdit }) => {
 
         // 게시물 수정하기
         const data = {
-          "apartId": apartId,
+          "postId": userId,
           "title": title,
           "content": content
         }
         axios
-        .put(`/api/post/write`,
+        .put(`/api/post/update`,
         JSON.stringify(data),{
           headers: {
             "Content-Type": "application/json",

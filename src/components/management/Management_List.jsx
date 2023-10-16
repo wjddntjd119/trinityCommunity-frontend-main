@@ -64,7 +64,7 @@ const Management_List = () => {
     setSelectedDong(event.target.value);
   };
 
-  return isAdmin ?(
+  return !isAdmin ?(
     <div className="managementList">
       <select className="dongSelect" value={selectedDong} onChange={handleDongChange}>
         <option value="">동을 선택해주세요</option>
