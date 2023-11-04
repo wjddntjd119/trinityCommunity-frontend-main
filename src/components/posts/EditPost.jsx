@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router";
 const EditPost = ({ isEdit }) => {
   const navigate = useNavigate();
   const userId = useParams().id;
-  const token = localStorage.getItem('daelim-token');
+  const token = localStorage.getItem('dorandoran-token');
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [apartId, setApartId] = useState("");
@@ -32,17 +32,17 @@ const EditPost = ({ isEdit }) => {
     }
   }, [userId]);
   
-
   useEffect(() => {
     if (token !== null) {
       axios
-        .get(`/api/user/info`,{
+        .get(`/api/apart/getInfo`,{
           headers: {
-            'daelim-token': `${token}`,
+            'dorandoran-token': `${token}`,
           },
         })
         .then((res) => {
-          setApartId(res.data.data.isAdmin);
+          setApartId(res.data.data.apartId);
+          console.log(res.data);
         })
     }
   }, [token]);
@@ -56,8 +56,8 @@ const EditPost = ({ isEdit }) => {
 
     if(window.confirm(isEdit? "게시물을 수정하시겠습니까?" : "새 게시물을 업로드 하시겠습니까?")) {
       if(!isEdit) {
-        navigate('/', { replace: true });
-        window.location.replace("/");
+        navigate('/sghnoise', { replace: true });
+        window.location.replace("/sghnoise");
 
         // 새 게시물
         const data = {
@@ -70,7 +70,7 @@ const EditPost = ({ isEdit }) => {
         JSON.stringify(data),{
           headers: {
             "Content-Type": "application/json",
-            'daelim-token': `${token}`,
+            'dorandoran-token': `${token}`,
           },
         })
         .then((res) => {
@@ -82,8 +82,8 @@ const EditPost = ({ isEdit }) => {
           console.log(err.response.data.message);
         });
       } else {
-        navigate('/', { replace: true });
-        window.location.replace("/");
+        navigate('/sghnoise', { replace: true });
+        window.location.replace("/sghnoise");
 
         // 게시물 수정하기
         const data = {
@@ -96,7 +96,7 @@ const EditPost = ({ isEdit }) => {
         JSON.stringify(data),{
           headers: {
             "Content-Type": "application/json",
-            'daelim-token': `${token}`,
+            'dorandoran-token': `${token}`,
           },
         })
         .then((res) => {

@@ -9,14 +9,14 @@ const Header = (props) => {
   //const { isResdata } = useContext(AuthContext);
   const navigate = useNavigate();
   const [userName, setUserName] = useState(null);
-  const token = localStorage.getItem('daelim-token');
+  const token = localStorage.getItem('dorandoran-token');
 
   useEffect(() => {
     if (token !== null) {
       axios
-        .get(`/api/user/info`,{
+        .get(`/api/users/info`,{
           headers: {
-            'daelim-token': `${token}`,
+            'dorandoran-token': `${token}`,
           },
         })
         .then((res) => {
@@ -38,7 +38,7 @@ const Header = (props) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('daelim-token');
+    localStorage.removeItem('dorandoran-token');
     alert("로그아웃했습니다.");
     window.location.reload();
   };
@@ -51,7 +51,7 @@ const Header = (props) => {
   return(
     <div className="header">
       <div className="topBar">
-        { userName !== null ?
+        { token !== null ?
           <p>[{userName}]</p>: <p>[로그인을 해주세용]</p>  
         }
         

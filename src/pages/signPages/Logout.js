@@ -7,7 +7,7 @@ const Logout = () =>{
 
   axios.get("/api/users/logout")
   .then(res => {
-    localStorage.removeItem('daelim-token');
+    localStorage.removeItem('dorandoran-token');
     alert("로그아웃했습니다.");
     navigate('/');
   }).catch(err => {
