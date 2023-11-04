@@ -379,11 +379,33 @@
   cursor: pointer;
 }
 
-
 .postItem > .postItem_box > .postItem_List > .postDate {
   margin-left: auto;
   margin-right: 20px;
   color: #5d5d5d;
+}
+
+/*comment_box(댓글) */
+
+.comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comment > .comment_box {
+  display: flex;
+  border: 2px solid #000;
+  margin-bottom: 10px;
+}
+
+.comment > .comment_box > .commentUser {
+  list-style: none;
+  padding: 0;
+}
+
+.comment > .comment_box > .comment_input {
+  
 }
 
 /* postList(게시글 리스트)*/

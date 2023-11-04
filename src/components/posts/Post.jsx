@@ -15,6 +15,8 @@ const Post = () => {
   const [data, setData] = useState([]);
   const [postList, setPostList] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [comment, setComment] = useState("");
+  const [target, setTarget] = useState(null);
   const token = localStorage.getItem('daelim-token');
 
   const goEdit = () => {
@@ -61,6 +63,32 @@ const Post = () => {
         console.log(err);
       });
   },[0]);
+  
+  const handleSubmit = () => {
+    const data = {
+      "postId": postId,
+      "target": target,
+      "comment": comment
+    }
+    Axios.post(`/api/comment/write`,
+      JSON.stringify(data), {
+        headers: {
+          "Content-Type": "application/json",
+          'daelim-token': `${token}`,
+        },
+      })
+    .then((res) => {
+      alert("댓글 업로드")
+      console.log(res.data)
+    })
+    .catch((err) => {
+      alert("댓글 업로드 실패")
+      console.log(err.response.data.message)
+    })
+  }
+
+  
+  
 
   return (
     <div className="postPg">
@@ -99,6 +127,27 @@ const Post = () => {
       <div className="editPost_box">
         <div className="btn_box">
          {data[0] && data[0].userId === userId ? <button className="custom-btn bw-btn" onClick={goEdit}><span>수정하기</span></button> : '' }
+        </div>
+      </div>
+      <div className="comment">
+        <div className="comment_box">
+          <section>
+            <div className="commentUser">유저 아이디: {userId}</div>
+            <div className="comment_input">
+              <input 
+                type="text"
+                className="commentSpace"
+                placeholder="이쁜 댓글 부탁드리겠습니다."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+            </div>
+          </section>
+          <section>
+            <div className="commentBtnSpace">
+              <button onClick={handleSubmit}>등록</button>
+            </div>
+          </section>
         </div>
       </div>
       <div className="postList">
