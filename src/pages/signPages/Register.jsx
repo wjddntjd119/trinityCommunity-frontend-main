@@ -11,7 +11,7 @@ export default function Register () {
   const rePasswordFormRef = useRef(null);
   const telNumFormRef = useRef(null);
   const apartIdxFormRef = useRef(null);
-  const token = localStorage.getItem('daelim-token');
+  const token = localStorage.getItem('dorandoran-token');
 
   const navigate = useNavigate();
   const [ isUserId, setUserId ] = useState("");
@@ -29,9 +29,9 @@ export default function Register () {
   useEffect(() => {
     if (token !== null) {
       axios
-        .get(`/api/user/info`,{
+        .get(`/api/users/info`,{
           headers: {
-            'daelim-token': `${token}`,
+            'dorandoran-token': `${token}`,
           },
         })
         .then((res) => {

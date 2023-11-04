@@ -11,8 +11,8 @@ const ReportNoise = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedCalendar, setSelctedCalender] = useState(null);
   const [isTextAreaFocused, setTextAreaFocus] = useState(false);
+  const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
-  const { isResdata } = useContext(AuthContext);
   const token = localStorage.getItem('dorandoran-token')
 
   useEffect(() => {
@@ -21,6 +21,21 @@ const ReportNoise = () => {
       navigate('/');
     }
   }, [token, navigate])
+
+  useEffect(() => {
+    if (token !== null) {
+      axios
+        .get(`/api/users/info`,{
+          headers: {
+            'dorandoran-token': `${token}`,
+          },
+        })
+        .then((res) => {
+          setUserId(res.data.data.userId);
+          console.log(res.data);
+        })
+    }
+  }, [token]);
 
   const handleTextAreaChange = (event) => {
     setTextAreaValue(event.target.value);
@@ -69,7 +84,7 @@ const ReportNoise = () => {
       const detail = textAreaValue;
   
       const userdata = {
-        userId: isResdata,
+        userId: userId,
         occurDate: occurDate,
         detail: detail,
         apartId: 1,

@@ -41,7 +41,7 @@ export default function Login () {
     }
 
     if(isValid) {
-      axios.post("/api/user/login", { userId, password })
+      axios.post("/api/users/login", { userId, password })
       .then((res) => {
         if (res && res.data) {
           if (res.data.error === null || res.data.data !== null) {
@@ -49,7 +49,7 @@ export default function Login () {
             console.log(res.data);
             const tokenFromBackend = res.data.data;
 
-            localStorage.setItem('daelim-token', tokenFromBackend);
+            localStorage.setItem('dorandoran-token', tokenFromBackend);
 
             login();
             alert("로그인 되었습니다.");

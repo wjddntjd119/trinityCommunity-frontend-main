@@ -8,16 +8,16 @@ const Management_List = () => {
   const [dongList, setDongList] = useState([]);
   const [selectedDong, setSelectedDong] = useState("");
   const [hoList, setHoList] = useState([]);
-  const token = localStorage.getItem('daelim-token');
+  const token = localStorage.getItem('dorandoran-token');
   const [isAdmin, setIsAdmin] = useState("");
 
 
   useEffect(() => {
     if (token !== null) {
       axios
-        .get(`/api/user/info`,{
+        .get(`/api/users/info`,{
           headers: {
-            'daelim-token': `${token}`,
+            'dorandoran-token': `${token}`,
           },
         })
         .then((res) => {

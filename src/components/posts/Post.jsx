@@ -17,7 +17,7 @@ const Post = () => {
   const [userId, setUserId] = useState(null);
   const [comment, setComment] = useState("");
   const [target, setTarget] = useState(null);
-  const token = localStorage.getItem('daelim-token');
+  const token = localStorage.getItem('dorandoran-token');
 
   const goEdit = () => {
     navigate(`/edit/${postId}`)
@@ -26,9 +26,9 @@ const Post = () => {
   useEffect(() => {
     if (token !== null) {
       Axios
-        .get(`/api/user/info`,{
+        .get(`/api/users/info`,{
           headers: {
-            'daelim-token': `${token}`,
+            'dorandoran-token': `${token}`,
           },
         })
         .then((res) => {
