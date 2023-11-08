@@ -1,21 +1,35 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import axios from "../../AxiosController";
+import { useEffect, useState } from "react";
+import Axios from "../../AxiosController";
 import ReportHistory_Item from "./ReportHistory_Item";
 
 const ReportHistory_List = () => {
-  const { isResdata } = useContext(AuthContext);
+  const [userId, setUserId] = useState(null);
   const [reportHistory, setReportHistory] = useState([]);
+  const token = localStorage.getItem('dorandoran-token');
 
   useEffect(() => {
-    if (isResdata !== "" && isResdata !== null) {
+    if (token !== null) {
+      Axios
+        .get(`/api/users/info`,{
+          headers: {
+            'dorandoran-token': `${token}`,
+          },
+        })
+        .then((res) => {
+          setUserId(res.data.data.userId);
+        })
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (userId !== "" && userId !== null) {
       ReportList();
     }
-  }, [isResdata]);
+  }, [userId]);
 
   const ReportList = () => {
-    axios
-      .get(`/api/Report/list/${isResdata}`)
+    Axios
+      .get(`/api/Report/list/${userId}`)
       .then((res) => {
         setReportHistory(res.data);
         console.log(res.data);
@@ -25,7 +39,7 @@ const ReportHistory_List = () => {
       });
   };
 
-  if (isResdata === null) {
+  if (userId === null) {
     return <div>로그인 후 이용 가능한 서비스입니다.</div>;
   }
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from '../../AxiosController';
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import ApartModal from '../../components/modal/ApartModal';
 
 export default function Register () {

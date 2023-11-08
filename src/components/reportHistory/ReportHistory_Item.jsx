@@ -1,9 +1,7 @@
 import axios from "../../AxiosController";
-import { AuthContext } from "../../context/AuthContext";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function ReportHistory_Item(props) {
-  const { isResdata } = useContext(AuthContext);
   const { reportDate, occurDate, detail, isCheck } = props;
   const [dong, setDong] = useState("");
   const [ho, setHo] = useState("");
@@ -11,12 +9,11 @@ function ReportHistory_Item(props) {
   const date = new Date(reportDate);
   const timeData = date.toLocaleString();
   const timesData = timeData.split(" ");
-  console.log(timeData)
   
   useEffect(() => {
     //데시벨 값을 가져옴
     axios
-    .get(`/api/apart/getInfo/${isResdata}`)
+    .get(`/api/apart/getInfo`)
       .then((res) => {
         console.log(res.data.data);
         setDong(res.data.data.dong);

@@ -1,16 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home';
 import Header from './components/Header';
 import HeaderMenu from './components/HeaderMenu'
 import Title from './components/Title';
 import RTNoisePage from './pages/RTNoisePage';
 import RHNoisePage from './pages/RHNoisePage';
-import SGHNoisePage from './pages/SGHNoisePage';
 import MCNoisePage from './pages/MCNoisePage';
 import OAMenuPage from './pages/OAMenuPage';
-import ManageResidentsPage from './pages/ManageResidentsPage';
 import NotFound from './pages/NotFound';
 import Login from './pages/signPages/Login';
 import Register from './pages/signPages/Register';

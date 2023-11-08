@@ -1,5 +1,4 @@
-import axios from "../AxiosController";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -24,47 +23,14 @@ const AuthProvider = ({ children }) => {
 //   });
 // }
 
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-  const [ isResdata, setResdata ] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    checkSession();
-  }, []);
-
-  const checkSession = () => {
-    axios.get("/api/users/isLogin")
-      .then(res => {
-        setResdata(res.data.data);
-        console.log(res.data.error + "에러 부분")
-        console.log(res.data.data + "데이터 부분");
-        if (res.data.error === null || res.data.data === null) {
-          setIsLoggedIn(false);
-        } else {
-          setIsLoggedIn(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-      });
-  };
-
 
   const login = (authInfo) => {
     navigate('/');
   };
 
-  const logout = () => {
-    navigate('/');
-  }
-
-  const setCookie = (name, value, days) => {
-    const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
-  };
-
   return(
-    <AuthContext.Provider value={{ isResdata, isLoggedIn, login, logout}}>
+    <AuthContext.Provider value={{ login }}>
       {children}
     </AuthContext.Provider>
   );

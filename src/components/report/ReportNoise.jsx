@@ -1,7 +1,6 @@
-import React, { useContext,useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from '../../AxiosController'
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../App.css';
@@ -73,8 +72,6 @@ const ReportNoise = () => {
       const hoursSelect = document.getElementById('hours');
       const minutesSelect = document.getElementById('minutes');
   
-      const formattedDate = selectedDate.split('-').reverse().join('-');
-
       const radioValue = radio.value === 'am' ? 0 : 12;
       const hoursValue = parseInt(hoursSelect.value, 10)+radioValue;
       const minutesValue = parseInt(minutesSelect.value, 10);
@@ -86,8 +83,7 @@ const ReportNoise = () => {
       const userdata = {
         userId: userId,
         occurDate: occurDate,
-        detail: detail,
-        apartId: 1,
+        detail: detail
       };
   
       axios
@@ -111,10 +107,6 @@ const ReportNoise = () => {
         });
     }
   };
-  
-      
-      
-    
 
   return (
     <div className="reportNoise">
@@ -131,7 +123,7 @@ const ReportNoise = () => {
             selected={selectedCalendar}
             onChange={handleDateChange}
             placeholderText="날짜를 선택해주세요"
-            formattedDate="yyyy-MM-dd"
+            formattedDate="yyyy-MM-dd'T'HH:mm"
           />
         </div>
         <div className="radio-group">

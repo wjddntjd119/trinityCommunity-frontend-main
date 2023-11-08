@@ -1,9 +1,7 @@
 import "../App.css";
 import axios from "../AxiosController"
-import { useContext,useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import Logout from "../pages/signPages/Logout";
 
 const Header = (props) => {
   //const { isResdata } = useContext(AuthContext);
@@ -40,6 +38,7 @@ const Header = (props) => {
   const handleLogout = () => {
     localStorage.removeItem('dorandoran-token');
     alert("로그아웃했습니다.");
+    navigate('/');
     window.location.reload();
   };
 

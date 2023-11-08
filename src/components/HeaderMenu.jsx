@@ -1,38 +1,46 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import axios from "../AxiosController";
-import { AuthContext } from "../context/AuthContext";
 
 const HeaderMenu = () => {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState('');
-  const { isResdata } = useContext(AuthContext);
   const [userName, setUserName] = useState('');
   const [reportData, setReportData] = useState(0);
+  const [userId, setUserId] = useState(null);
+  const token = localStorage.getItem('dorandoran-token');
 
   useEffect(() => {
     cheackUserData();
     cheackUserReportData();
   });
 
+  useEffect(() => {
+    if (token !== null) {
+      axios
+        .get(`/api/users/info`,{
+          headers: {
+            'dorandoran-token': `${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data.data.userId)
+          setUserId(res.data.data.userId);
+          setUserName(res.data.data.userName);
+        })
+    }
+  }, [token]);
+
   const cheackUserData = () => {
-    if(isResdata !== "" && isResdata !== null) {
-      axios.get(`/api/users/Info/${isResdata}`)
-      .then((res) => {
-        setUserName(res.data.data.userName);
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-      })
-    } else {
+    if(userId === "" && userId === null) {
       setUserName("도란도란");
     }
   }
 
   const cheackUserReportData = () => {
-    if(isResdata !== "" && isResdata !== null) {
-      axios.get(`/api/Report/list/${isResdata}`)
+    if(userId !== "" && userId !== null) {
+      axios.get(`/api/Report/list/${userId}`)
       .then((res) => {
         setReportData(res.data.length);
       })
@@ -84,13 +92,14 @@ const HeaderMenu = () => {
     navigate('/alarms');
   }
 
+  console.log(userName)
 
   return(
     <div className="menu">
       <div className="login">
         <div className="sysUser">
           <div className="name-rectangle">
-            {userName}
+            {userName === undefined || null || '' ? userName : '도란도란' }
           </div>
           <div className="date-rectangle">
             {today()}
@@ -111,8 +120,7 @@ const HeaderMenu = () => {
           </div>
           <div className="urreport" onClick={rhNoise}>
             <div>안읽은 신고</div> 
-            {/*<div className="numscolor">{reportData}</div> 건 */}
-            <div className="numscolor">0</div> 건
+            <div className="numscolor">{reportData}</div> 건
           </div>
         </div>
       </div>
