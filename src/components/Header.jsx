@@ -18,9 +18,6 @@ const Header = (props) => {
           },
         })
         .then((res) => {
-          console.log(res.data);
-          console.log(res.data.data.userId);
-          console.log(res.data.data.userName);
           setUserName(res.data.data.userName);
         })
         //.catch((err) => {

@@ -404,9 +404,6 @@
   padding: 0;
 }
 
-.comment > .comment_box > .comment_input {
-  
-}
 
 /* postList(게시글 리스트)*/
 
@@ -1041,4 +1038,16 @@ button {
 .postContent {
   font-size: 20px; /* 원하는 크기로 조정하세요 */
   text-align: justify;
+}
+
+/* ReportHistory 리스트 개시판 */
+.centered-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.centered-table {
+  margin: 0 auto;
+  text-align: center;
 }

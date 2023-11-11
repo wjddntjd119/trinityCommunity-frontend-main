@@ -129,7 +129,7 @@ const Post = () => {
          {data[0] && data[0].userId === userId ? <button className="custom-btn bw-btn" onClick={goEdit}><span>수정하기</span></button> : '' }
         </div>
       </div>
-      <div className="comment">
+      {/* <div className="comment">
         <div className="comment_box">
           <section>
             <div className="commentUser">유저 아이디: {userId}</div>
@@ -149,7 +149,7 @@ const Post = () => {
             </div>
           </section>
         </div>
-      </div>
+      </div> */}
       <div className="postList">
         <div className="postList_box">
           <div className="postLt_List">

@@ -9,11 +9,17 @@ function ReportHistory_Item(props) {
   const date = new Date(reportDate);
   const timeData = date.toLocaleString();
   const timesData = timeData.split(" ");
+
+  const token = localStorage.getItem('dorandoran-token');
   
   useEffect(() => {
     //데시벨 값을 가져옴
     axios
-    .get(`/api/apart/getInfo`)
+    .get(`/api/apart/getInfo`, {
+      headers: {
+        'dorandoran-token': `${token}`,
+      },
+    })
       .then((res) => {
         console.log(res.data.data);
         setDong(res.data.data.dong);
@@ -22,7 +28,7 @@ function ReportHistory_Item(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [token]);
 
 
   const dates = new Date(occurDate);

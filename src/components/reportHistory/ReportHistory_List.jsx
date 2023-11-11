@@ -44,10 +44,10 @@ const ReportHistory_List = () => {
   }
 
   if (reportHistory.length === 0) {
-    return <div>신고 내역 없음</div>;
+    return <div className="centered-message">신고 내역 없음</div>;
   } else if (reportHistory !== null) {
     return (
-      <table className="RHL_table">
+      <table className="RHL_table centered-table">
         <thead>
           <tr>
             <th>신고 시간</th>
